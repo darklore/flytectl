@@ -87,3 +87,15 @@ brews:
 
     dependencies:
     - name: go
+
+    install: |
+      bin.install "flytectl"
+
+      bash_output = Utils.safe_popen_read(bin/"flytectl", "completion", "bash")
+      (bash_completion/"flytectl").write bash_output
+
+      zsh_output = Utils.safe_popen_read(bin/"flytectl", "completion", "zsh")
+      (zsh_completion/"_flytectl").write zsh_output
+
+      fish_output = Utils.safe_popen_read(bin/"flytectl", "completion", "fish")
+      (fish_completion/"flytectl.fish").write fish_output
